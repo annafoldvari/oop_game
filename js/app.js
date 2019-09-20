@@ -1,8 +1,4 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * app.js */
-
- let game;
+let game;
 
 
  document.getElementById('btn__reset').addEventListener('click', function(){

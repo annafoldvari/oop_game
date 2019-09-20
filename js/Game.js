@@ -1,31 +1,26 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * Game.js */
+class Game {
 
- class Game {
    constructor() {  
      this.missed = 0;
      this.phrases = [new Phrase('A bunch of fives'), new Phrase('A different kettle of fish'), new Phrase('Get over it'), new Phrase('Labour of love'), new Phrase('Top dog')];
      this.activePhrase = null;
    } 
 
-/**
-* Selects random phrase from phrases property
-* @return {Object} Phrase object chosen to be used
-*/
-   
-   getRandomPhrase() {
+   /**
+    * Selects random phrase from phrases property
+    * @return {Object} Phrase object chosen to be used
+    */ 
 
-    let randomNumber = Math.floor(Math.random() * this.phrases.length);
+    getRandomPhrase() {
 
-    return this.phrases[randomNumber];
+        let randomNumber = Math.floor(Math.random() * this.phrases.length);
 
-   }
+        return this.phrases[randomNumber];
+    }
  
-
- /**
-* Begins game by selecting a random phrase and displaying it to user
-*/
+    /**
+     * Begins game by selecting a random phrase and displaying it to user
+     */
 
     startGame() {
         document.getElementById('overlay').style.display = 'none';
@@ -33,11 +28,11 @@
         this.activePhrase.addPhraseToDisplay();
     }
 
-/**
-* Checks for winning move
-* @return {boolean} True if game has been won, false if game wasn't
-won
-*/    
+    /**
+    * Checks for winning move
+    * @return {boolean} True if game has been won, false if game wasn't
+    won
+    */    
 
     checkForWin() {
         let letterLis = document.querySelectorAll('.letter');
@@ -46,23 +41,17 @@ won
         return letterLis.length === showedLis.length;
     }
 
-/**
-* Increases the value of the missed property
-* Removes a life from the scoreboard
-* Checks if player has remaining lives and ends game if player is out
-*/    
+    /**
+    * Increases the value of the missed property
+    * Removes a life from the scoreboard
+    * Checks if player has remaining lives and ends game if player is out
+    */    
 
     removeLife() {
 
         let lifeImgs = document.querySelectorAll('#scoreboard li img');
-
-        for (let i = 0; i < lifeImgs.length; i++) {
-            let element = lifeImgs[i];
-            if (element.getAttribute('src') === 'images/liveHeart.png') {
-                element.setAttribute('src', 'images/lostHeart.png' )
-                break;
-            }
-        }
+        let element = lifeImgs[this.missed];
+        element.setAttribute('src', 'images/lostHeart.png' )
 
         this.missed += 1;
 
@@ -72,10 +61,10 @@ won
 
     }
 
-/**
-* Displays game over message
-* @param {boolean} gameWon - Whether or not the user won the game
-*/
+    /**
+    * Displays game over message
+    * @param {boolean} gameWon - Whether or not the user won the game
+    */
 
     gameOver(gameWon) {
         let overlayDiv = document.getElementById('overlay');
@@ -84,7 +73,7 @@ won
         
         if (document.querySelector('#overlay h1')) {
             document.querySelector('#overlay h1').remove();
-        }    
+        }
 
         let h1Element = document.createElement('h1');
         overlayDiv.appendChild(h1Element);   
@@ -98,10 +87,11 @@ won
         }
     }
 
-/**
-* Handles onscreen keyboard button clicks
-* @param (HTMLButtonElement) button - The clicked button element
-*/
+    /**
+    * Handles onscreen keyboard button clicks
+    * @param (HTMLButtonElement) button - The clicked button element
+    */
+
     handleInteraction(button) {
         button.setAttribute('disabled', 'true');
         let letter = button.textContent;
@@ -118,9 +108,9 @@ won
         }
     } 
 
-/**
-* Resets the board
-*/    
+    /**
+    * Resets the board
+    */    
     
     resetBoard() {
 
